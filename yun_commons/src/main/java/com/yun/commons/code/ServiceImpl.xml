@@ -1,0 +1,120 @@
+package com.service.impl;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.dao.interf.CLASSNAMEDaoInter;
+import com.entity.ResultMessage;
+import com.entity.CLASSNAME;
+import com.service.inter.CLASSNAMEServiceInter;
+import common.Page;
+import common.TOOL;
+@Service
+public class CLASSNAMEServiceImpl implements CLASSNAMEServiceInter{
+    @Autowired
+    private CLASSNAMEDaoInter cLASSNAMEDao;
+	@Override
+	public Object getPages(CLASSNAME cLASSNAME, Page page) {
+		Map<String,Object> params=new HashMap<String,Object>();
+		if(page!=null){
+			params.put("pageNo", page.getCurrentRow());
+			params.put("pageSize",page.getRows());
+		}
+		Map<String,Object> result=new HashMap<String,Object>();
+		try{
+			result.put("rows", cLASSNAMEDao.getPageData(params));
+			result.put("total",cLASSNAMEDao.getPageCount(params));
+		}catch(Exception e){
+			e.printStackTrace();
+			result.put("rows",null);
+			result.put("total",0);
+		}
+		return result;
+	}
+	@Override
+	public Object getCLASSNAMEByID(String ID) {
+		Map<String,Object> params=new HashMap<String,Object>();
+		try{
+			params.put("key", "ID");
+			params.put("value", ID);
+			Object obj=cLASSNAMEDao.getMapObj(params);
+			return obj;
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+	@Override
+	public ResultMessage insert(CLASSNAME cLASSNAME) {
+		ResultMessage msg = new ResultMessage();
+		//Map<String,Object> params=new HashMap<String,Object>();
+		try{
+			//params.put("key", "filed");
+			//params.put("value", value);
+			//int cun=cLASSNAMEDao.getObjectExists(params);
+			//if(cun>0){
+			//	msg.setSuccess(false);
+			//	msg.setErrorMsg("数据已存在了哦！");
+			//	return msg;
+			//}
+			//TODO (主键手动添加)
+			cLASSNAME.setIDS(TOOL.getTOOLS());
+			cLASSNAMEDao.save(cLASSNAME);
+			msg.setSuccess(true);
+			msg.setErrorMsg("成功！");
+		}catch(Exception e){
+		    msg.setSuccess(false);
+			msg.setErrorMsg("失败,服务异常！");
+		}		
+		return msg;
+	}
+	@Override
+	public ResultMessage update(CLASSNAME cLASSNAME) {
+		ResultMessage msg = new ResultMessage();
+		//Map<String,Object> params=new HashMap<String,Object>();
+		try{
+			//params.put("key", "filed");
+			//params.put("value", value);
+			//params.put("key3", "filedID");
+			//params.put("value3", valueID);
+			//int cun=cLASSNAMEDao.getObjectExists(params);
+			//if(cun>0){
+			//	msg.setSuccess(false);
+			//	msg.setErrorMsg("数据已存在了哦！");
+			//	return msg;
+		    //}
+			cLASSNAMEDao.update(cLASSNAME);
+			msg.setSuccess(true);
+			msg.setErrorMsg("修改成功！");
+		}catch(Exception e){
+			e.printStackTrace();
+		    msg.setSuccess(false);
+			msg.setErrorMsg("修改失败,服务异常！");
+		}		
+		return msg;
+	}
+	
+	@Override
+	public ResultMessage delete(String ID) {
+		ResultMessage msg = new ResultMessage();
+		Map<String,Object> params=new HashMap<String,Object>();
+		try{
+			params.put("key", "ID");
+			params.put("value", ID);
+			cLASSNAMEDao.delete(params);
+			msg.setSuccess(true);
+			msg.setErrorMsg("成功！");
+		}catch(Exception e){
+			e.printStackTrace();
+		    msg.setSuccess(false);
+			msg.setErrorMsg("服务异常！");
+		}		
+		return msg;
+	}
+
+}

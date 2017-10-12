@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间路径采用实体类完整路径 -->
+<mapper namespace="com.yun.entity.SysJuris">
+     <insert id="save" parameterType="SysJuris">
+            insert into SYS_JURIS(JURIS_ID,JURIS_MENUS,ROLE_ID)values(#{JURIS_ID},#{JURIS_MENUS},#{ROLE_ID})
+     </insert>
+     
+     <insert id="saveListT" parameterType="List">
+          
+     </insert>
+     
+     <update id="update" parameterType="SysJuris">
+          
+     </update>
+     
+     <update id="updateM" parameterType="Map">
+            update SYS_JURIS set ${filed}=#{filedValue}
+            <if test="filed2!=null and filed2!=''">,${filed2}=#{filedValue2}</if>
+            <if test="filed3!=null and filed3!=''">,${filed3}=#{filedValue3}</if>
+            <if test="filed4!=null and filed4!=''">,${filed4}=#{filedValue4}</if>
+            where 1=1
+            <if test="params1!=null and paramsValue1!=''"> and ${params1}=#{paramsValue1} </if>
+            <if test="params2!=null and paramsValue2!=''"> and ${params2}=#{paramsValue2} </if>
+     </update>
+     
+     <select id="get" parameterType="Map" resultType="SysJuris">
+       
+     </select>
+     
+     <select id="getM" parameterType="Map" resultType="Map">
+            
+     </select>
+     
+     <select id="getList" parameterType="Map" resultType="SysJuris">
+           
+     </select>
+     
+     <select id="getListMap" parameterType="Map" resultType="Map">
+            select  a.JURIS_ID,a.JURIS_MENUS,a.ROLE_ID from SYS_JURIS a,SYS_ADMIN_ROLE b 
+            where  b.ROLE_ID=a.ROLE_ID and b.ADMIN_ID=#{adminID}
+     </select>
+     
+     <select id="getListMap2" parameterType="Map" resultType="Map">
+            select  a.JURIS_ID,a.JURIS_MENUS,a.ROLE_ID from SYS_JURIS a,SYS_ADMIN_ROLE b 
+            where  b.ROLE_ID=a.ROLE_ID and a.ROLE_ID=#{roleID}
+     </select>
+     <select id="getObjExists" parameterType="Map" resultType="int">
+          
+     </select>
+     
+    <select id="getPageData" parameterType="Map" resultType="Map">
+           
+     </select>
+     
+      <select id="getPageCount" parameterType="Map" resultType="int">
+        
+     </select>
+     
+      <delete id="delete" parameterType="Map">
+           delete from SYS_JURIS where ${key}=#{value}
+     </delete>
+</mapper>

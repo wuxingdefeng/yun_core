@@ -1,0 +1,12 @@
+package com.dao.impl;
+
+import org.springframework.stereotype.Repository;
+
+import com.dao.interf.CLASSNAMEDaoInter;
+import com.entity.CLASSNAME;
+
+
+@Repository
+public class CLASSNAMEDaoImpl extends BasicDAOImpl<CLASSNAME> implements CLASSNAMEDaoInter{
+
+}

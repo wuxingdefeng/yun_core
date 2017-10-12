@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>德玛西亚万岁</title>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script src="im/webim.config.js"></script>
+	<script src="im/strophe-1.2.8.min.js"></script>
+	<script src="im/websdk-1.4.10.min.js"></script>
+	<script src="im/adapter.js"></script>
+	<script src="im/webrtc-1.4.10.js"></script>
+  </head>
+  <body>
+       本人: 
+		<video id="localVideo" autoplay width="240" muted="true"></video>
+		  朋友: 
+		<video id="video" autoplay width="240"></video>
+  </body>
+  
+  <script type="text/javascript">
+          
+			  var rtcCall = new WebIM.WebRTC.Call({
+			    connection: conn,
+			    mediaStreamConstaints: {
+			            audio: true,
+			            video: true
+			    },
+			
+			    listener: {
+			        onAcceptCall: function (from, options) {
+			        console.log('onAcceptCall::', 'from: ', from, 'options: ', options);
+			        },
+			        onGotRemoteStream: function (stream) {
+			            console.log('onGotRemoteStream::', 'stream: ', stream);
+				        var video = document.getElementById('video');
+				        video.src = window.URL.createObjectURL(stream);
+			        },
+			        onGotLocalStream: function (stream) {
+			            console.log('onGotLocalStream::', 'stream:', stream);
+			            var video = document.getElementById('localVideo');
+			            video.src = window.URL.createObjectURL(stream);
+			        },
+			        onRinging: function (caller) {
+			            console.log('onRinging::', 'caller:', caller);
+			        },
+			        onTermCall: function (reason) {
+			            console.log('onTermCall::');
+			            console.log('reason:', reason);
+			        },
+			        onIceConnectionStateChange: function (iceState) {
+			            console.log('onIceConnectionStateChange::', 'iceState:', iceState);
+			        },
+			        onError: function (e) {
+			            console.log(e);
+			        }
+			     }
+			});
+			var call = function () {
+		        rtcCall.caller = 'mengyuanyuan';
+		        rtcCall.makeVideoCall('asdfghj');
+		    };
+		    // 关掉/拒绝视频
+		    var endCall = function () {
+		        rtcCall.endCall();
+		    }
+		    // 接受对方呼叫
+		    var acceptCall = function () {
+		        rtcCall.acceptCall();
+		    }
+           document.getElementById('rtCall').onclick = call;
+			document.getElementById('rtEndCall').onclick = endCall;
+			document.getElementById('rtAcceptCall').onclick = acceptCall;
+  </script>
+</html>

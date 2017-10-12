@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间路径采用实体类完整路径 -->
+<mapper namespace="com.yun.entity.TUserBasic">
+     <!-- 单个插入 -->
+     <insert id="save" parameterType="TUserBasic">
+            insert  into t_user_basic (user_id,user_name,user_sex,user_birthday,user_age,user_marrige,user_job,user_phone,user_long_address,user_communication_address,create_by,create_date,update_by,update_date,del_date,user_name_first,is_del )
+		values
+		(#{user_id},#{user_name},#{user_sex},#{user_birthday},#{user_age},#{user_marrige},#{user_job},#{user_phone},#{user_long_address},#{user_communication_address},#{create_by},#{create_date},#{update_by},#{update_date},#{del_date},#{user_name_first},0)
+     </insert>
+     <!-- 批量插入 -->
+     <insert id="saveListT" parameterType="List">
+            insert  into t_user_basic (user_id,user_name,user_sex,user_birthday,user_age,user_marrige,user_job,user_phone,user_long_address,user_communication_address,create_by,create_date,update_by,update_date,del_date,is_del )
+		values
+		<foreach collection="list" item="item" index="index" separator="," >
+			(#{item.user_id},#{item.user_name},#{item.user_sex},#{item.user_birthday},#{item.user_age},#{item.user_marrige},#{item.user_job},#{item.user_phone},#{item.user_long_address},#{item.user_communication_address},#{item.create_by},#{item.create_date},#{item.update_by},#{item.update_date},#{item.del_date},0)
+		</foreach>
+     </insert>
+     <!-- 更新 -->
+     <update id="update" parameterType="TUserBasic">
+            update  t_user_basic set user_name=#{user_name},user_sex=#{user_sex},user_birthday=#{user_birthday},user_age=#{user_age},user_marrige=#{user_marrige},user_job=#{user_job},user_phone=#{user_phone},user_long_address=#{user_long_address},user_communication_address=#{user_communication_address},update_by=#{update_by},update_date=#{update_date},user_name_first=#{user_name_first} where is_del=0 and user_id=#{user_id}
+     </update>
+     <!-- 更新多个或者单个字段 -->
+     <update id="updateM" parameterType="Map">
+            update t_user_basic set ${filed}=#{filedValue}
+            <if test="filed2!=null and filed2!=''">,${filed2}=#{filedValue2}</if>
+            <if test="filed3!=null and filed3!=''">,${filed3}=#{filedValue3}</if>
+            <if test="filed4!=null and filed4!=''">,${filed4}=#{filedValue4}</if>
+            <!-- 可扩展 -->
+            where 1=1
+            <if test="key1!=null and key1!=''"> and ${key1}=#{value1} </if>
+            <if test="key2!=null and key2!=''"> and ${key2}=#{value2} </if>
+            <!-- 可扩展 -->
+     </update>
+     
+     <select id="get" parameterType="Map" resultType="TUserBasic">
+            select user_id,user_name,user_sex,user_birthday,DATE_FORMAT(user_birthday,'%Y-%m-%d') user_birthday_Str,user_age,user_marrige,user_job,user_phone,user_long_address,user_communication_address,create_by,create_date,update_by,update_date,del_date,user_name_first from t_user_basic 
+            where 1=1
+            <if test="key!=null and key!=''">
+                 and ${key}=#{value}
+            </if>
+     </select>
+     
+     <select id="getM" parameterType="Map" resultType="Map">
+            select user_id,user_name,user_sex,user_birthday,DATE_FORMAT(user_birthday,'%Y-%m-%d') user_birthday_Str,user_age,user_marrige,user_job,user_phone,user_long_address,user_communication_address,create_by,create_date,update_by,update_date,del_date,user_name_first from t_user_basic 
+            where 1=1
+            <if test="key!=null and key!=''">
+                 and ${key}=#{value}
+            </if>
+     </select>
+     
+     <select id="getList" parameterType="Map" resultType="TUserBasic">
+           select user_id,user_name,user_sex,user_birthday,user_age,user_marrige,user_job,user_phone,user_long_address,user_communication_address,create_by,create_date,update_by,update_date,del_date from t_user_basic 
+            where 1=1
+            <if test="key!=null and key!=''">
+                 and ${key}=#{value}
+            </if>
+     </select>
+     
+     <select id="getListMap" parameterType="Map" resultType="Map">
+           select user_id,user_name,user_sex,user_birthday,user_age,user_marrige,user_job,user_phone,user_long_address,user_communication_address,create_by,create_date,update_by,update_date,del_date from t_user_basic 
+            where 1=1
+            <if test="key!=null and key!=''">
+                 and ${key}=#{value}
+            </if>
+     </select>
+     
+     <select id="getObjExists" parameterType="Map" resultType="int">
+          select count(1)  from t_user_basic where 1=1
+          <if test="key!=null and key!=''">
+               and ${key}=#{value}
+          </if>
+           <if test="key2!=null and key2!=''">
+               and ${key2}=#{value2}
+          </if>
+          <!-- 不等于本身时使用 -->
+           <if test="key3!=null and key3!=''">
+               and ${key3}!=#{value3}
+          </if>
+          <!-- 可扩展 -->
+     </select>
+   <!-- 返回分页数据 -->
+    <select id="getPageData" parameterType="Map" resultType="Map">
+           select user_id,user_name,user_sex,DATE_FORMAT(user_birthday,'%Y-%m-%d') user_birthday,user_age,user_marrige,user_job,user_phone,user_long_address,user_communication_address,create_by,create_date,update_by,update_date,del_date from t_user_basic 
+            where 1=1 
+           <!-- 扩展条件 -->
+            and is_del=0
+           <if test="pageNo!=null">
+                limit #{pageNo},#{pageSize}
+           </if>
+     </select>
+     <!-- 返回分页总数量 -->
+      <select id="getPageCount" parameterType="Map" resultType="int">
+            select  count(1)  from t_user_basic 
+            where 1=1
+           <!-- 扩展条件(与返回数据条件同步) -->
+              and is_del=0
+     </select>
+     <!-- 物理删除 (单个条件可扩展)-->
+     <delete id="delete" parameterType="Map">
+           delete from t_user_basic where ${key}=#{value}
+     </delete>
+     <!-- 假删除 (需要添加表字段 is_del(0 未删除 1已删除))-->
+     <update id="deleteBash" parameterType="Map">
+           update t_user_basic set is_del=1,del_date=now() where ${key}=#{value}
+     </update>
+     
+     <select id="getUserName" resultType="Map" parameterType="String">
+     SELECT t.`user_id`,t.`user_age`,t.`user_name`,DATE_FORMAT(t.user_birthday,'%Y-%m-%d') user_birthday,
+		t.`user_sex`,t.`user_marrige`,t.`user_job`,t.`user_long_address`,t.`user_communication_address`,t.`user_phone`
+		 FROM t_user_basic t 
+		WHERE 1=1
+		AND (t.`user_name` LIKE CONCAT('%',trim(#{user_name}),'%') OR t.`user_name_first` LIKE CONCAT('%',trim(#{user_name}),'%'))
+		and t.is_del=0
+     </select>
+</mapper>

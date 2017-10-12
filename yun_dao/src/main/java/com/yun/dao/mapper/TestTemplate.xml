@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间路径采用实体类完整路径 -->
+<mapper namespace="com.yun.entity.TestTemplate">
+     <!-- 单个插入 -->
+     <insert id="save" parameterType="TestTemplate">
+            insert  into test_template (template_id,template_name,template,create_date,is_del,del_date,status )
+		values
+		(#{template_id},#{template_name},#{template},now(),0,#{del_date},#{status})
+     </insert>
+     <!-- 批量插入 -->
+     <insert id="saveListT" parameterType="List">
+            insert  into test_template (template_id,template_name,template,create_date,is_del,del_date,status )
+		values
+		<foreach collection="list" item="item" index="index" separator="," >
+			(#{item.template_id},#{item.template_name},#{item.template},now(),0,#{item.del_date},#{item.status})
+		</foreach>
+     </insert>
+     <!-- 更新 -->
+     <update id="update" parameterType="TestTemplate">
+            update  test_template set template_name=#{template_name},template=#{template} where is_del=0 and template_id=#{template_id}
+     </update>
+     <!-- 更新多个或者单个字段 -->
+     <update id="updateM" parameterType="Map">
+            update test_template set ${filed}=#{filedValue}
+            <if test="filed2!=null and filed2!=''">,${filed2}=#{filedValue2}</if>
+            <if test="filed3!=null and filed3!=''">,${filed3}=#{filedValue3}</if>
+            <if test="filed4!=null and filed4!=''">,${filed4}=#{filedValue4}</if>
+            <!-- 可扩展 -->
+            where 1=1
+            <if test="key1!=null and key1!=''"> and ${key1}=#{value1} </if>
+            <if test="key2!=null and key2!=''"> and ${key2}=#{value2} </if>
+            <!-- 可扩展 -->
+     </update>
+     
+     <select id="get" parameterType="Map" resultType="TestTemplate">
+            select template_id,template_name,template,create_date,del_date,status from test_template 
+            where 1=1
+            <if test="key!=null and key!=''">
+                 and ${key}=#{value}
+            </if>
+     </select>
+     
+     <select id="getM" parameterType="Map" resultType="Map">
+            select template_id,template_name,template,create_date,del_date,status from test_template 
+            where 1=1
+            <if test="key!=null and key!=''">
+                 and ${key}=#{value}
+            </if>
+     </select>
+     
+     <select id="getList" parameterType="Map" resultType="TestTemplate">
+           select template_id,template_name,template,create_date,del_date,status from test_template 
+            where 1=1
+            <if test="key!=null and key!=''">
+                 and ${key}=#{value}
+            </if>
+     </select>
+     
+     <select id="getListMap" parameterType="Map" resultType="Map">
+           select template_id,template_name,template,create_date,del_date,status from test_template 
+            where 1=1
+            <if test="key!=null and key!=''">
+                 and ${key}=#{value}
+            </if>
+     </select>
+     
+     <select id="getObjExists" parameterType="Map" resultType="int">
+          select count(1)  from test_template where 1=1
+          <if test="key!=null and key!=''">
+               and ${key}=#{value}
+          </if>
+           <if test="key2!=null and key2!=''">
+               and ${key2}=#{value2}
+          </if>
+          <!-- 不等于本身时使用 -->
+           <if test="key3!=null and key3!=''">
+               and ${key3}!=#{value3}
+          </if>
+          <!-- 可扩展 -->
+     </select>
+   <!-- 返回分页数据 -->
+    <select id="getPageData" parameterType="Map" resultType="Map">
+           select template_id,template_name,template,create_date,del_date,status from test_template 
+            where 1=1 
+           <!-- 扩展条件 -->
+           <if test="pageNo!=null">
+                limit #{pageNo},#{pageSize}
+           </if>
+     </select>
+     <!-- 返回分页总数量 -->
+      <select id="getPageCount" parameterType="Map" resultType="int">
+            select  count(1)  from test_template 
+            where 1=1
+           <!-- 扩展条件(与返回数据条件同步) -->
+     </select>
+     <!-- 物理删除 (单个条件可扩展)-->
+     <delete id="delete" parameterType="Map">
+           delete from test_template where ${key}=#{value}
+     </delete>
+     <!-- 假删除 (需要添加表字段 is_del(0 未删除 1已删除))-->
+     <update id="deleteBash" parameterType="Map">
+           update test_template set is_del=1 where ${key}=#{value}
+     </update>
+</mapper>

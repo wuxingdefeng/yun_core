@@ -1,0 +1,50 @@
+.login_Main{width:0;height:0;position:fixed;left:50%;rigth:50%;top:50%;bottom:50%;}
+
+.main,.main_A{
+    background-image: url("sys_images/logininfo.png");
+    border-radius: 5px;
+    height: 281px;
+    margin-left: -341px;
+    margin-top: -155px;
+    width: 682px;
+    padding-top: 30px;
+    background-size: cover;
+    
+    }
+ .main_A{background:url(sys_images/loginbg3.png) no-repeat center center; }
+.divs{margin-top:20px;margin-left:146px;}
+.div_name{margin-top:50px;}
+.inp{width:258px;height:34px;line-height:34px;font-size:15px;border-radius:3px;border:1px solid  #ccc;padding-left:6px;background-color:#fff;}
+.codeinp{width:161px;margin-left:18px;}
+#code{width:80px;height:34px;vertical-align:middle;}
+.btn{margin-top:20px;margin-left:60px;}
+.code{margin-top:20px;margin-left:148px;}
+.btn_div{width:89px;height:34px;cursor:pointer;line-height:34px;border-radius:3px;display:inline-block;margin-left:88px;background-color:#ccc;color:#fff;font-weight:bold;}
+.layui-layer-btn a{border:none;border-color:none;}
+.login_btn{background-color:#778899;color:#fff;border:none}
+#code{cursor:pointer;}
+
+#mainBody {width:100%;height:100%;position:absolute;z-index:-1;}
+.cloud {position:absolute;top:0px;left:0px;width:100%;height:100%;background:url(sys_images/cloud.png) no-repeat;z-index:1;opacity:0.5;}
+#cloud2 {z-index:2;}
+.login_Main{
+width:100%; height:585px;}
+
+.loginbm{font-size:9pt;height:50px; line-height:50px; text-align:center; background:url(sys_images/loginbg2.png) repeat-x;position:absolute; bottom:0; width:100%; color:#0b3a58;}
+.loginbm a{font-weight:bold;color:#0b3a58;}
+.loginbm a:hover{color:#fff;}
+a,a:focus{text-decoration:none;color:#000;outline:none;blr:expression(this.onFocus=this.blur());}
+a:hover{color:#00a4ac;text-decoration:none;}
+ul{display:block;margin:0;padding:0;list-style:none;}
+li{display:block;margin:0;padding:0;list-style: none;}
+.logintop{height:47px; position:absolute; top:0; background:url(sys_images/loginbg1.png) repeat-x;z-index:100; width:100%;font-size:9pt;}
+.logintop span{color:#fff; line-height:47px; background:url(sys_images/loginsj.png) no-repeat 21px 18px; text-indent:44px; color:#afc5d2; float:left;}
+.logintop ul{float:right; padding-right:30px;}
+.logintop ul li{float:left; margin-left:20px; line-height:47px;}
+.logintop ul li a{color:#afc5d2;}
+.logintop ul li a:hover{color:#fff;}
+.layui-layer div{text-align:left;}
+input:-webkit-autofill {
+ -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+ -webkit-text-fill-color: #333;
+}

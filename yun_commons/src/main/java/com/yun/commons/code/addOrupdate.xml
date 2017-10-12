@@ -1,0 +1,67 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ include file="../common/taglibs.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="<%=basePath%>/static/my/system/cLASSNAME.css" type="text/css">
+	<script type="text/javascript" src="<%=basePath%>/static/my/system/cLASSNAME.js"></script>
+	<script type="text/javascript">
+		   var submitForm = function($dialog, $grid, $pjq) {
+		        var ID=$("input[name='IDS']").val();
+		        var url='<%=contextPath %>/sys/cLASSNAME/update';
+		        if(typeof("undefined")==ID||ID==null){
+		           url='<%=contextPath %>/sys/cLASSNAME/insert';
+		        }
+				$('#form').form('submit',{
+						url:url,
+						onSubmit:function(param){
+							var result=$(this).form('validate');
+							if(!result){
+								parent.$.messager.show({
+								title:'提示消息',
+								msg:'请填写完整的信息',
+								timeout:2000,
+								showType:'slide'
+								});
+							}
+							return result;
+						},
+						success:function(data){
+							var result=eval('('+data+')');
+							if(result.success==true){
+								parent.$.messager.show({
+								title:'提示消息',
+								msg:result.errorMsg,
+								timeout:2000,
+								showType:'slide'
+								});
+								$dialog.dialog('destroy');
+								$grid.datagrid('load',{});
+							}else{
+								parent.$.messager.show({
+								title:'提示消息',
+								msg:result.errorMsg,
+								timeout:2000,
+								showType:'slide'
+								});
+							}
+						}
+					});
+				};
+	</script>
+  </head>
+  <body>
+  <form method="post" class="form" id="form">
+        <c:if test="${cLASSNAME.IDS!=null and cLASSNAME.IDS!=''}">
+              <input type="hidden" name="IDS"  value="${cLASSNAME.IDS}">
+        </c:if>
+          <input type="hidden" name="token" value="${token }">
+		<fieldset>
+			<table class="table" style="width: 97%;">
+			       LIST
+			</table>
+		</fieldset>
+	</form>
+  </body>
+</html>

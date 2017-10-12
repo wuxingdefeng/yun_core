@@ -1,0 +1,103 @@
+body{margin:0px;padding:0px;width:100%;height:100%;background-color: #436ece;
+   font-family: 微软雅黑;
+}
+
+/**  下面是打印的css样式 **/
+.print_Allcotent{
+	font-size: 16px;
+  /* padding: 30px; */
+   /*    width: 1024px; */
+   width:930px;
+   border:1px solid #808080;
+    margin: 0 auto;
+   box-shadow:-1px 0 5px #808080,1px 0 5px #808080;
+}
+.print_title_all{
+	width:100%;
+	height: 140px;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-left:0px;
+	padding-right:0px;
+	margin-top:50px;
+}
+.print_title_date{
+	width:100%;
+	height:40px;
+	line-height: 40px;
+	text-align: center;
+}
+.print_title_date_content{
+	height: 40px;
+	width:340px;
+	margin-left:440px;
+	text-align: center;
+	line-height: 50px;
+}
+.print_title_date_content_spantitle{
+	width:90px;
+	height: 40px;
+	line-height:50px;
+	display: inline-block;
+	text-align: center;
+	float: left;
+}
+.print_title_date_content_span{
+	/* width: 90px;
+    height: 100%;
+    border-bottom: 1px solid #e0e0e0;
+    display: inline-block; */
+    width:90px;
+	height: 40px;
+	float: left;
+	line-height:50px;
+	border-bottom: 1px solid #666;
+	display: inline-block;
+	text-align: center;
+}
+.print_title_context{
+	height: 60px;
+    width: 200px;
+    color: #787878;
+    font-size: 30px;
+    line-height: 60px;
+    text-align: center;
+    font-weight: blod;
+    margin: 0 auto;
+}
+.content_title{
+	margin-left: 0px;
+	height: 30px;
+	color: #808080;
+	font-size: 22px;
+}
+.content_t1{
+	width:100%;
+	height:30px;
+	line-height: 30px;
+}
+.content_t1_1{
+	float: left;
+	height: 100%;
+}
+.showcontent{
+	width:70px;
+	height: 29px;
+	line-height:32px;
+	border-bottom: 1px solid #666;
+	display: inline-block;
+	text-align: center;
+}
+.showcontentNoBorder{
+	width:70px;
+	height: 29px;
+	line-height:32px;
+	display: inline-block;
+}
+.showcontentTextLeft{
+	width:70px;
+	height: 29px;
+	line-height:32px;
+	border-bottom: 1px solid #666;
+	display: inline-block;
+}

@@ -1,0 +1,88 @@
+body{
+   margin:0px;
+   padding:0px;
+   -webkit-user-select:none;
+   user-select:none;
+   width:100%;
+   font-family:Î¢ÈíÑÅºÚ;
+   font-size:14px;
+   height:100%;
+   background-color:#f5f5f5;
+
+   
+   
+}
+::-webkit-scrollbar {/*Òþ²Ø¹öÂÖ*/
+ display: none;
+}
+.content{
+   width:1172px;
+   height:100%;
+   background-color:#fff;
+   border-left:1px solid #e0e0e0;
+   border-right:1px solid #e0e0e0;
+   margin:0 auto;
+   position:relative;
+   
+}
+.title{
+   display:inline-block;
+   margin-top:20px;
+   font-size:20px;
+   width:100%;
+   text-align:center;
+}
+.line{height:15px;border-bottom:1px dashed  #808080;width:95%;margin:0 auto;}
+.catalog_fast{border-top:1px solid #808080;}
+.catalog{width:157px;height:auto;margin-top:8px;border-left:none;font-size:15px;color:#808080;float:left;position:fixed;}
+
+
+.catalog_g{width:100%;text-align:left;padding-left:12px;height:35px;line-height:35px;cursor:pointer;border:1px dashed #ccc;border-left:none;border-bottom:none;}
+.catalog_g_sel{background-color:#808080;color:#fff;border:1px solid #808080;border-left:none;border-bottom:none;}
+.catalog_last{border-bottom:1px solid #ccc;}
+
+.context_main{width:1000px;height:auto;float:right;margin-top:8px;margin-left:17px;padding-bottom:200px;}
+
+.a_title{display:inline-block;width:207px;}
+
+.name{width:149px;display:inline-block;}
+
+.layui-form-radio{margin:0px 10px 0px 0px;}
+
+.a_lan{width:100%;height:36px;line-height:35px;font-size:17px;font-weight:bold;background-color:#808080;margin-bottom:8px;color:#fff;}
+.a_lan font{display:inline-block;margin-left:12px;}
+
+.a_g{margin-bottom:8px;    border-bottom: 1px dashed #b0b0b0;
+    padding-bottom: 9px}
+
+.input_s{width:140px;display:inline-block;}
+
+.layui-input, .layui-textarea{height:32px;line-height:32px;}
+
+.nv_a{display:inline-block;width:85px;}
+
+.gj{display:inline-block;width:12px;}
+
+.a_4 .layui-form-checkbox  span{display:inline-block;width:73px;}
+.bing_all .layui-form-checkbox  span{display:inline-block;width:73px;}
+
+.bing2_3 .layui-form-checkbox  span{display:inline-block;width:73px;}
+.bing2_4 .layui-form-checkbox  span{display:inline-block;width:73px;}
+
+.yj .layui-form-checkbox  span{display:inline-block;width:50px;}
+
+.yjl .layui-form-checkbox  span{display:inline-block;width:370px;}
+
+.yjgl .layui-form-checkbox  span{display:inline-block;width:auto;}
+
+.bd .layui-form-checkbox  span{display:inline-block;width:90px;}
+
+.lie_2{display:inline-block;width:156px;text-align:right;}
+
+.lie_1{display:inline-block;width:212px;text-align:right;}
+
+.lie_3{display:inline-block;width:120px;text-align:right;}
+
+.b_1{margin-top:15px;}
+
+.bing_lie1{display:inline-block;width:160px;}

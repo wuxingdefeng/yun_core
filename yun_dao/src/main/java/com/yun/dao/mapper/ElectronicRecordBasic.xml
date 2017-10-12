@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间路径采用实体类完整路径 -->
+<mapper namespace="com.yun.entity.ElectronicRecordBasic">
+     <!-- 单个插入 -->
+     <insert id="save" parameterType="ElectronicRecordBasic">
+            insert  into electronic_record_basic (record_id,user_name,user_sex,user_age,user_birthday,user_rmarrige,user_job,user_phone,user_long_address,user_postal_address,uncomfortable_place,write_date,create_date,create_by,del_date,is_del,del_by,record_num,remarks,user_id )
+		values
+		(#{record_id},#{user_name},#{user_sex},#{user_age},#{user_birthday},#{user_rmarrige},#{user_job},#{user_phone},#{user_long_address},#{user_postal_address},#{uncomfortable_place},#{write_date},#{create_date},#{create_by},#{del_date},0,#{del_by},#{record_num},#{remarks},#{user_id})
+     </insert>
+     <!-- 批量插入 -->
+     <insert id="saveListT" parameterType="List">
+            insert  into electronic_record_basic (record_id,user_name,user_sex,user_age,user_birthday,user_rmarrige,user_job,user_phone,user_long_address,user_postal_address,uncomfortable_place,write_date,create_date,create_by,del_date,is_del,del_by,record_num,remarks )
+		values
+		<foreach collection="list" item="item" index="index" separator="," >
+			(#{item.record_id},#{item.user_name},#{item.user_sex},#{item.user_age},#{item.user_birthday},#{item.user_rmarrige},#{item.user_job},#{item.user_phone},#{item.user_long_address},#{item.user_postal_address},#{item.uncomfortable_place},#{item.write_date},#{item.create_date},#{item.create_by},#{item.del_date},0,#{item.del_by},#{item.record_num},#{item.remarks})
+		</foreach>
+     </insert>
+     <!-- 更新 -->
+     <update id="update" parameterType="ElectronicRecordBasic">
+            update  electronic_record_basic set record_id=#{record_id},user_name=#{user_name},user_sex=#{user_sex},user_age=#{user_age},user_birthday=#{user_birthday},user_rmarrige=#{user_rmarrige},user_job=#{user_job},user_phone=#{user_phone},user_long_address=#{user_long_address},user_postal_address=#{user_postal_address},uncomfortable_place=#{uncomfortable_place},write_date=#{write_date},create_date=#{create_date},create_by=#{create_by},del_date=#{del_date},del_by=#{del_by},record_num=#{record_num},remarks=#{remarks} where is_del=0 and record_id=#{record_id}
+     </update>
+     <!-- 更新多个或者单个字段 -->
+     <update id="updateM" parameterType="Map">
+            update electronic_record_basic set ${filed}=#{filedValue}
+            <if test="filed2!=null and filed2!=''">,${filed2}=#{filedValue2}</if>
+            <if test="filed3!=null and filed3!=''">,${filed3}=#{filedValue3}</if>
+            <if test="filed4!=null and filed4!=''">,${filed4}=#{filedValue4}</if>
+            <!-- 可扩展 -->
+            where 1=1
+            <if test="key1!=null and key1!=''"> and ${key1}=#{value1} </if>
+            <if test="key2!=null and key2!=''"> and ${key2}=#{value2} </if>
+            <!-- 可扩展 -->
+     </update>
+     
+     <select id="get" parameterType="Map" resultType="ElectronicRecordBasic">
+            select record_id,user_name,user_sex,user_age,user_birthday,user_rmarrige,user_job,user_phone,user_long_address,user_postal_address,uncomfortable_place,write_date,create_date,create_by,del_date,del_by,record_num,remarks from electronic_record_basic 
+            where 1=1
+            <if test="key!=null and key!=''">
+                 and ${key}=#{value}
+            </if>
+     </select>
+     
+     <select id="getM" parameterType="Map" resultType="Map">
+            select record_id,user_name,user_sex,user_age,user_birthday,user_rmarrige,user_job,user_phone,user_long_address,user_postal_address,uncomfortable_place,write_date,create_date,create_by,del_date,del_by,record_num,remarks from electronic_record_basic 
+            where 1=1
+            <if test="key!=null and key!=''">
+                 and ${key}=#{value}
+            </if>
+     </select>
+     
+     <select id="getMapObjOfRecordDetail" parameterType="Map" resultType="Map">
+           SELECT b.record_id,b.user_name,b.user_sex,b.user_age,DATE_FORMAT(b.`user_birthday`,'%Y-%m-%d') user_birthday,b.user_rmarrige,b.user_job,
+			b.user_phone,b.user_long_address,b.user_postal_address,b.uncomfortable_place,
+			DATE_FORMAT(b.`create_date`,'%Y-%m-%d') create_date,b.`record_num`,
+			d.`jsondata`,d.`htmldata`
+			FROM electronic_record_basic b
+			LEFT JOIN `electronic_record_basic_detail` d ON b.`record_id`=d.`record_id`
+			 WHERE 1=1
+            <if test="key!=null and key!=''">
+                 and ${key}=#{value}
+            </if>
+     </select>
+     
+     <select id="getList" parameterType="Map" resultType="ElectronicRecordBasic">
+           select record_id,user_name,user_sex,user_age,user_birthday,user_rmarrige,user_job,user_phone,user_long_address,user_postal_address,uncomfortable_place,write_date,create_date,create_by,del_date,del_by,record_num,remarks from electronic_record_basic 
+            where 1=1
+            <if test="key!=null and key!=''">
+                 and ${key}=#{value}
+            </if>
+     </select>
+     
+     <select id="getListMap" parameterType="Map" resultType="Map">
+           select record_id,user_name,user_sex,user_age,user_birthday,user_rmarrige,user_job,user_phone,user_long_address,user_postal_address,uncomfortable_place,write_date,create_date,create_by,del_date,del_by,record_num,remarks from electronic_record_basic 
+            where 1=1
+            <if test="key!=null and key!=''">
+                 and ${key}=#{value}
+            </if>
+     </select>
+     
+     <select id="getObjExists" parameterType="Map" resultType="int">
+          select count(1)  from electronic_record_basic where 1=1
+          <if test="key!=null and key!=''">
+               and ${key}=#{value}
+          </if>
+           <if test="key2!=null and key2!=''">
+               and ${key2}=#{value2}
+          </if>
+          <!-- 不等于本身时使用 -->
+           <if test="key3!=null and key3!=''">
+               and ${key3}!=#{value3}
+          </if>
+          <!-- 可扩展 -->
+     </select>
+   <!-- 返回分页数据 -->
+    <select id="getPageData" parameterType="Map" resultType="Map">
+           select record_id,user_name,user_sex,user_age,DATE_FORMAT(`user_birthday`,'%Y-%m-%d') user_birthday,user_rmarrige,user_job,user_phone,user_long_address,user_postal_address,uncomfortable_place,DATE_FORMAT(`write_date`,'%Y-%m-%d') write_date,create_date,create_by,del_date,del_by,record_num,remarks from electronic_record_basic 
+            where 1=1 
+           <!-- 扩展条件 -->
+           <if test="searchName!=null and searchName!=''">
+         <!--  AND (user_name LIKE CONCAT('%',trim(#{searchName}),'%') 
+          OR user_phone LIKE CONCAT('%',trim(#{searchName}),'%')) -->
+          
+        <![CDATA[and (user_name like '%${searchName}%'  OR user_phone like '%${searchName}%')]]>
+         
+           </if>
+            AND is_del=0
+            ORDER BY create_date DESC
+           <if test="pageNo!=null">
+                limit #{pageNo},#{pageSize}
+           </if>
+     </select>
+     <!-- 返回分页总数量 -->
+      <select id="getPageCount" parameterType="Map" resultType="int">
+            select  count(1)  from electronic_record_basic 
+            where 1=1
+             AND is_del=0
+           <!-- 扩展条件(与返回数据条件同步) -->
+     </select>
+     <!-- 物理删除 (单个条件可扩展)-->
+     <delete id="delete" parameterType="Map">
+           delete from electronic_record_basic where ${key}=#{value} 
+     </delete>
+     <!-- 假删除 (需要添加表字段 is_del(0 未删除 1已删除))-->
+     <update id="deleteBash" parameterType="Map">
+           update electronic_record_basic set is_del=1 where ${key}=#{value}
+     </update>
+</mapper>

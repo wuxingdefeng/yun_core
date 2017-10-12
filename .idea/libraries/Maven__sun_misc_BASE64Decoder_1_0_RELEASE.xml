@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: sun.misc:BASE64Decoder:1.0.RELEASE">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/sun/misc/BASE64Decoder/1.0.RELEASE/BASE64Decoder-1.0.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/sun/misc/BASE64Decoder/1.0.RELEASE/BASE64Decoder-1.0.RELEASE-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/sun/misc/BASE64Decoder/1.0.RELEASE/BASE64Decoder-1.0.RELEASE-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

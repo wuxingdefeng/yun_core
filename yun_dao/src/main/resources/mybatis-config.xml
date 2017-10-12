@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD SQL Map Config 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<settings> 
+        <setting name="cacheEnabled" value="true" /><!-- 全局映射器启用缓存 -->   
+        <setting name="useGeneratedKeys" value="true" /> 
+        <setting name="defaultExecutorType" value="REUSE" /> 
+    </settings>
+	<typeAliases>
+		 <!-- aliases  -->
+		 <!--用户表(2017-09-25 10:43:11)-->
+		 <typeAlias type="com.yun.entity.TUserBasic" alias="TUserBasic"/>
+		 <!--病历表(2017-08-02 14:24:19)-->
+		 <typeAlias type="com.yun.entity.ElectronicRecordBasic" alias="ElectronicRecordBasic"/>
+		 <!--病历表详情(2017-08-02 13:40:26)-->
+		 <typeAlias type="com.yun.entity.ElectronicRecordBasicDetail" alias="ElectronicRecordBasicDetail"/>
+		 <!--日志信息(2017-05-03 16:38:04)-->
+		 <typeAlias type="com.yun.entity.Loginfo" alias="Loginfo"/>
+		 <!--病例模板(2017-03-23 11:18:47)-->
+		 <typeAlias type="com.yun.entity.TestTemplate" alias="TestTemplate"/>
+		 <!--角色类(2016-11-23 15:34:32)-->
+		 <typeAlias type="com.yun.entity.SysRole" alias="SysRole"/>
+		 <!--Demo测试(2016-11-21 10:18:47)-->
+		 <typeAlias type="com.yun.entity.SysDemo" alias="SysDemo"/>
+		 
+		 <typeAlias type="com.yun.entity.SysAdmin" alias="SysAdmin"/>
+		 <typeAlias type="com.yun.entity.SysMenu" alias="SysMenu"/>
+		 <typeAlias type="com.yun.entity.SysJuris" alias="SysJuris"/>
+	</typeAliases>
+</configuration>

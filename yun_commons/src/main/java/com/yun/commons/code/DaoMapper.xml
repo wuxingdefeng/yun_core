@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间路径采用实体类完整路径 -->
+<mapper namespace="NAMESPACE">
+     <!-- 单个插入 -->
+     <insert id="save" parameterType="SYSCLASS">
+            <!-- INSERT  -->
+     </insert>
+     <!-- 批量插入 -->
+     <insert id="saveListT" parameterType="List">
+            <!-- INSERTLIST  -->
+     </insert>
+     <!-- 更新 -->
+     <update id="update" parameterType="SYSCLASS">
+            <!-- UPDATE -->
+     </update>
+     <!-- 更新多个或者单个字段 -->
+     <update id="updateM" parameterType="Map">
+            update TABLENAME set ${filed}=#{filedValue}
+            <if test="filed2!=null and filed2!=''">,${filed2}=#{filedValue2}</if>
+            <if test="filed3!=null and filed3!=''">,${filed3}=#{filedValue3}</if>
+            <if test="filed4!=null and filed4!=''">,${filed4}=#{filedValue4}</if>
+            <!-- 可扩展 -->
+            where 1=1
+            <if test="key1!=null and key1!=''"> and ${key1}=#{value1} </if>
+            <if test="key2!=null and key2!=''"> and ${key2}=#{value2} </if>
+            <!-- 可扩展 -->
+     </update>
+     
+     <select id="get" parameterType="Map" resultType="SYSCLASS">
+            <!-- SELECT --> 
+            where 1=1
+            <if test="key!=null and key!=''">
+                 and ${key}=#{value}
+            </if>
+     </select>
+     
+     <select id="getM" parameterType="Map" resultType="Map">
+            <!-- SELECT --> 
+            where 1=1
+            <if test="key!=null and key!=''">
+                 and ${key}=#{value}
+            </if>
+     </select>
+     
+     <select id="getList" parameterType="Map" resultType="SYSCLASS">
+           <!-- SELECT --> 
+            where 1=1
+            <if test="key!=null and key!=''">
+                 and ${key}=#{value}
+            </if>
+     </select>
+     
+     <select id="getListMap" parameterType="Map" resultType="Map">
+           <!-- SELECT --> 
+            where 1=1
+            <if test="key!=null and key!=''">
+                 and ${key}=#{value}
+            </if>
+     </select>
+     
+     <select id="getObjExists" parameterType="Map" resultType="int">
+          select count(1)  from TABLENAME where 1=1
+          <if test="key!=null and key!=''">
+               and ${key}=#{value}
+          </if>
+           <if test="key2!=null and key2!=''">
+               and ${key2}=#{value2}
+          </if>
+          <!-- 不等于本身时使用 -->
+           <if test="key3!=null and key3!=''">
+               and ${key3}!=#{value3}
+          </if>
+          <!-- 可扩展 -->
+     </select>
+   <!-- 返回分页数据 -->
+    <select id="getPageData" parameterType="Map" resultType="Map">
+           <!-- SELECT --> 
+            where 1=1 
+           <!-- 扩展条件 -->
+           <if test="pageNo!=null">
+                limit #{pageNo},#{pageSize}
+           </if>
+     </select>
+     <!-- 返回分页总数量 -->
+      <select id="getPageCount" parameterType="Map" resultType="int">
+            select  count(1)  from TABLENAME 
+            where 1=1
+           <!-- 扩展条件(与返回数据条件同步) -->
+     </select>
+     <!-- 物理删除 (单个条件可扩展)-->
+     <delete id="delete" parameterType="Map">
+           delete from TABLENAME where ${key}=#{value}
+     </delete>
+     <!-- 假删除 (需要添加表字段 is_del(0 未删除 1已删除))-->
+     <update id="deleteBash" parameterType="Map">
+           update TABLENAME set is_del=1 where ${key}=#{value}
+     </update>
+</mapper>

@@ -1,0 +1,7 @@
+package com.dao.interf;
+
+import com.entity.CLASSNAME;
+
+public interface CLASSNAMEDaoInter extends BasicDAO<CLASSNAME>{
+	  
+}

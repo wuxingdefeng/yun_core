@@ -1,0 +1,26 @@
+.menus{width:100%;background-color:#fff;-webkit-box-shadow: -1px -1px 8px;
+-moz-box-shadow: -1px -1px 8px;  
+  box-shadow: -1px -1px 8px;}
+body{height:100%;width:100%;background-color:#eee;}
+a{text-decoration:none;font-size:13px;color:#e6f1f7;}
+.menus_s{width:94%;background-color:#fff;height:100%;
+  }
+.menus_a{margin-right:8px;background-color:#71C671;color:#fff;border: 1px solid #71C671;border-radius: 4px;display: inline-block; float: left;margin-left: 4px;margin-top: 5px; padding: 4px 18px; text-align: center;}
+.menus_upd_btn{background-color:#CDBE70;border: 1px solid #CDBE70;}
+.menus_del_btn{background-color:#EE6A50;border: 1px solid #EE6A50;}
+.menus_deail_btn{background-color:#8F8F8F;border: 1px solid #8F8F8F;}
+.menus_reach_btn{background-color:#CDAF95;border: 1px solid #CDAF95;}
+.menus_as{width:100%;height:38px;}
+.seachs{padding-bottom:2px;display:inline-block;width:100%;}
+.seachs input{width:150px;height:28px;border:1px solid #e0e0e0;border-radius:4px;margin-left:3px;margin-right:7px;padding-left:4px;line-height:28px;}
+.whe select{width:130px;height:32px;border:1px solid #e0e0e0;line-height:32px;}
+.seachs div{float:left;}
+.pages_div{width:100%;height:35px;background-color:#eee;position:fixed;bottom:0px;border-top:1px solid #e0e0e0;}
+.tables_main{width:100%;margin-top:5px;background-color:#fff;overflow:auto;}
+
+
+.tables_{ background-color:#eaeaea; line-height:25px;width:auto;table-layout:fixed;word-break:break-all;}
+.tables_ tr{display: -webkit-flex;display:-ms-inline-flexbox;}
+.tables_ td{ background-color:#fff; text-align:center;font-size:13px;color:#808080;}
+.titles_tbl  td{ background-color:#e0e0e0; text-align:center}
+.whe_a_btn{display:inline-block;text-align:center;padding:7px 16px;background-color:#FF7F00;color:#fff;margin-left:8px;margin-right:-4px;border-radius:3px;cursor:pointer;}

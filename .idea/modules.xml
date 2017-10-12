@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/web-core/web-core.iml" filepath="$PROJECT_DIR$/web-core/web-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yun_commons/yun_commons.iml" filepath="$PROJECT_DIR$/yun_commons/yun_commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yun_core.iml" filepath="$PROJECT_DIR$/yun_core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yun_dao/yun_dao.iml" filepath="$PROJECT_DIR$/yun_dao/yun_dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yun_entity/yun_entity.iml" filepath="$PROJECT_DIR$/yun_entity/yun_entity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yun_service/yun_service.iml" filepath="$PROJECT_DIR$/yun_service/yun_service.iml" />
+    </modules>
+  </component>
+</project>

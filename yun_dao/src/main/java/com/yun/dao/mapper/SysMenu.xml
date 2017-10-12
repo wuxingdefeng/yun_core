@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间路径采用实体类完整路径 -->
+<mapper namespace="com.yun.entity.SysMenu">
+     <insert id="save" parameterType="SysMenu">
+             insert into SYS_MENU (MENU_NAME, MENU_PNG ,MENU_URL,MENU_NO,PARENT_MENUID,ADMIN_ID,CREATE_DATE,MENU_STATUS) 
+             values(#{MENU_NAME},#{MENU_PNG},#{MENU_URL},#{MENU_NO},#{PARENT_MENUID},#{ADMIN_ID},now(),#{MENU_STATUS})
+     </insert>
+     
+     <insert id="saveListT" parameterType="List">
+          
+     </insert>
+     
+     <update id="update" parameterType="SysMenu">
+          update SYS_MENU set MENU_NAME=#{MENU_NAME}, MENU_PNG=#{MENU_PNG} ,MENU_URL=#{MENU_URL},MENU_NO=#{MENU_NO},
+          PARENT_MENUID=#{PARENT_MENUID},ADMIN_ID=#{ADMIN_ID},CREATE_DATE=now() 
+          where MENU_ID=#{MENU_ID}
+     </update>
+     
+     <update id="updateM" parameterType="Map">
+            update SYS_MENU set ${filed}=#{filedValue}
+            <if test="filed2!=null and filed2!=''">,${filed2}=#{filedValue2}</if>
+            <if test="filed3!=null and filed3!=''">,${filed3}=#{filedValue3}</if>
+            <if test="filed4!=null and filed4!=''">,${filed4}=#{filedValue4}</if>
+            where 1=1
+            <if test="params1!=null and paramsValue1!=''"> and ${params1}=#{paramsValue1} </if>
+            <if test="params2!=null and paramsValue2!=''"> and ${params2}=#{paramsValue2} </if>
+     </update>
+     
+     <select id="get" parameterType="Map" resultType="SysMenu">
+       select  MENU_ID ,MENU_NAME, MENU_PNG ,MENU_URL,MENU_NO,PARENT_MENUID,ADMIN_ID,CREATE_DATE,MENU_STATUS 
+            from SYS_MENU where MENU_ID=${MENU_ID}
+     </select>
+     
+     <select id="getM" parameterType="Map" resultType="Map">
+            select  MENU_ID ,MENU_NAME, MENU_PNG ,MENU_URL,MENU_NO,PARENT_MENUID,ADMIN_ID,CREATE_DATE,MENU_STATUS 
+            from SYS_MENU where ${key}=#{value}
+     </select>
+     
+     <select id="getList" parameterType="Map" resultType="SysMenu">
+           
+     </select>
+     
+     <select id="getListMap" parameterType="Map" resultType="Map">
+            select  MENU_ID ,MENU_NAME, MENU_PNG ,MENU_URL,MENU_NO,PARENT_MENUID,ADMIN_ID,CREATE_DATE,MENU_STATUS 
+            from SYS_MENU where MENU_STATUS=1 order by MENU_NO ASC
+     </select>
+     
+     <select id="getObjExists" parameterType="Map" resultType="int">
+          select count(1)  from SYS_MENU where 1=1
+          <if test="key!=null and key!=''">
+               and ${key}=#{value}
+          </if>
+           <if test="key2!=null and key2!=''">
+               and ${key2}=#{value2}
+          </if>
+           <if test="key3!=null and key3!=''">
+               and ${key3}!=#{value3}
+          </if>
+     </select>
+     
+    <select id="getPageData" parameterType="Map" resultType="Map">
+            select  a.MENU_ID ,a.MENU_NAME, a.MENU_PNG ,a.MENU_URL,a.MENU_NO,c.PARENT_MENUID,a.ADMIN_ID,a.CREATE_DATE,a.MENU_STATUS,
+            b.admin_name
+            from SYS_MENU a 
+            left join SYS_ADMIN b on b.admin_id=a.admin_id 
+            left join SYS_MENU c on c.MENU_ID=a.PARENT_MENUID 
+            where 1=1 
+            <if test="name!=null and name!=''">
+               and  a.menu_name like CONCAT('%',trim(#{name}),'%') 
+            </if>
+             <if test="parent_menuID!=null and parent_menuID!=''">
+                and a.PARENT_MENUID=#{parent_menuID}
+            </if>
+            order by a.menu_NO  
+            <if test="pageNo!=null">
+                limit #{pageNo},#{pageSize}
+            </if>
+     </select>
+     
+      <select id="getPageCount" parameterType="Map" resultType="int">
+            select  count(1) 
+            from SYS_MENU a 
+            left join SYS_ADMIN b on b.admin_id=a.admin_id
+            where 1=1
+            <if test="name!=null and name!=''">
+                and a.menu_name like CONCAT('%',trim(#{name}),'%') 
+            </if>
+            <if test="parent_menuID!=null and parent_menuID!=''">
+                and a.PARENT_MENUID=#{parent_menuID}
+            </if>
+     </select>
+     
+     <delete id="delete" parameterType="Map">
+           delete from SYS_MENU where ${key}=#{value}
+     </delete>
+</mapper>

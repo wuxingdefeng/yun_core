@@ -1,0 +1,13 @@
+.layui-layer-red .layui-layer-title {
+	background: red;
+	color: #fff;
+	border: none
+}
+
+.layui-layer-red .layui-layer-btn a {
+	background: red
+}
+
+.layui-layer-red .layui-layer-btn .layui-layer-btn1 {
+	background: red
+}

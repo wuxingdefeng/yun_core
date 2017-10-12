@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间路径采用实体类完整路径 -->
+<mapper namespace="com.yun.entity.SysAdmin">
+     <insert id="save" parameterType="SysAdmin">
+             insert into SYS_ADMIN (ADMIN_ID, ADMIN_NAME,ADMIN_PWD,CREATE_DATE,ADMIN_HEAND,ADMIN_SEX ,ADMIN_STATUS,LAST_LOGINDATE,LAST_LOGINIP) 
+             values(#{ADMIN_ID},#{ADMIN_NAME},#{ADMIN_PWD},now(),#{ADMIN_HEAND},#{ADMIN_SEX},#{ADMIN_STATUS},#{LAST_LOGINDATE},#{LAST_LOGINIP})
+     </insert>
+     
+     <insert id="saveListT" parameterType="List">
+             insert into SYS_ADMIN (ADMIN_ID, ADMIN_NAME,ADMIN_PWD,CREATE_DATE,ADMIN_HEAND,ADMIN_SEX ,ADMIN_STATUS,LAST_LOGINDATE,LAST_LOGINIP) 
+             values
+            <foreach collection="list" item="item" index="index" separator="," >
+		        (#{item.ADMIN_ID},#{item.ADMIN_NAME},#{item.ADMIN_PWD},now(),#{item.ADMIN_HEAND},#{item.ADMIN_SEX},#{item.ADMIN_STATUS},#{item.LAST_LOGINDATE},#{item.LAST_LOGINIP})
+		    </foreach>
+     </insert>
+     
+     <update id="update" parameterType="SysAdmin">
+            update SYS_ADMIN set  ADMIN_NAME=#{ADMIN_NAME}
+                                            ,ADMIN_HEAND=#{ADMIN_HEAND},ADMIN_SEX=#{ADMIN_SEX}
+            where ADMIN_ID=#{ADMIN_ID}
+     </update>
+     
+     <update id="updateM" parameterType="Map">
+            update SYS_ADMIN set ${filed}=#{filedValue}
+            <if test="filed2!=null and filed2!=''">,${filed2}=#{filedValue2}</if>
+            <if test="filed3!=null and filed3!=''">,${filed3}=#{filedValue3}</if>
+            <if test="filed4!=null and filed4!=''">,${filed4}=#{filedValue4}</if>
+            where 1=1
+            <if test="params1!=null and paramsValue1!=''"> and ${params1}=#{paramsValue1} </if>
+            <if test="params2!=null and paramsValue2!=''"> and ${params2}=#{paramsValue2} </if>
+     </update>
+     
+     <select id="get" parameterType="Map" resultType="SysAdmin">
+          select ADMIN_ID, ADMIN_NAME,ADMIN_PWD,CREATE_DATE,ADMIN_HEAND,ADMIN_SEX ,ADMIN_STATUS,LAST_LOGINDATE,LAST_LOGINIP from SYS_ADMIN 
+          where 1=1 
+            <if test="params1!=null and paramsValue1!=''"> and ${params1}=#{paramsValue1} </if>
+            <if test="params2!=null and paramsValue2!=''"> and ${params2}=#{paramsValue2} </if>
+            <!-- 扩展条件 -->
+     </select>
+     
+     <select id="getM" parameterType="Map" resultType="Map">
+            select a.ADMIN_ID, ADMIN_NAME,ADMIN_PWD,a.CREATE_DATE,ADMIN_HEAND,ADMIN_SEX ,ADMIN_STATUS,LAST_LOGINDATE,LAST_LOGINIP, 
+            c.role_id ROLE_ID,c.ROLE_SRC  
+            from SYS_ADMIN a 
+            left join sys_admin_role b on b.admin_id=a.admin_id
+            left join sys_role c on c.role_id=b.role_id  
+            where 1=1 
+            <if test="params1!=null and paramsValue1!=''"> and a.${params1}=#{paramsValue1} </if>
+            <if test="params2!=null and paramsValue2!=''"> and a.${params2}=#{paramsValue2} </if>
+            <!-- 扩展条件 -->
+     </select>
+     
+     <select id="getList" parameterType="Map" resultType="SysAdmin">
+            select ADMIN_ID, ADMIN_NAME,ADMIN_PWD,CREATE_DATE,ADMIN_HEAND,ADMIN_SEX ,ADMIN_STATUS,LAST_LOGINDATE,LAST_LOGINIP from SYS_ADMIN 
+            where 1=1 
+     </select>
+     
+     <select id="getListMap" parameterType="Map" resultType="Map">
+             select ADMIN_ID, ADMIN_NAME,ADMIN_PWD,CREATE_DATE,ADMIN_HEAND,ADMIN_SEX ,ADMIN_STATUS,LAST_LOGINDATE,LAST_LOGINIP from SYS_ADMIN 
+            where 1=1 
+     </select>
+     
+     <select id="getObjExists" parameterType="Map" resultType="int">
+            select count(1) from SYS_ADMIN 
+            where 1=1 
+           <if test="params1!=null and paramsValue1!=''"> and ${params1}=#{paramsValue1} </if>
+           <if test="params2!=null and paramsValue2!=''"> and ${params2}=#{paramsValue2} </if>
+           <if test="params3!=null and paramsValue3!=''"> and ${params3}!=#{paramsValue3} </if>
+     </select>
+     
+    <select id="getPageData" parameterType="Map" resultType="Map">
+           select ADMIN_ID, ADMIN_NAME,ADMIN_PWD,CREATE_DATE,ADMIN_HEAND,ADMIN_SEX ,ADMIN_STATUS,LAST_LOGINDATE,LAST_LOGINIP from SYS_ADMIN 
+           where 1=1 
+           <if test="admin_name!=null and admin_name!=''">
+                 and admin_name like CONCAT('%',trim(#{admin_name}),'%')
+           </if>
+           <if test="pageNo!=null">
+                limit #{pageNo},#{pageSize}
+           </if>
+     </select>
+     
+      <select id="getPageCount" parameterType="Map" resultType="int">
+           select count(1) from SYS_ADMIN 
+          where 1=1 
+           <if test="admin_name!=null and admin_name!=''">
+                 and admin_name like CONCAT('%',trim(#{admin_name}),'%')
+           </if>
+     </select>
+     
+     <insert id="saveAdminRole" parameterType="Map">
+            insert into sys_admin_role(admin_id,role_id)values(#{ADMIN_ID},#{ROLE_ID})
+     </insert>
+     
+     <delete id="deleteAdminRole" parameterType="Map">
+        delete from sys_admin_role where admin_id=#{admin_id}
+     </delete>
+</mapper>
